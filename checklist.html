@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checklist Interactivo - Seguridad de Negocios Digitales</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #050b14;
+      --bg-secondary: #0a1224;
+      --bg-card: rgba(13, 22, 42, 0.6);
+      --bg-card-hover: rgba(20, 32, 59, 0.8);
+      --border-color: rgba(255, 255, 255, 0.06);
+      --border-hover: rgba(255, 140, 0, 0.35);
+      
+      --accent-orange: #ff8c00;
+      --accent-orange-hover: #ff9d24;
+      --accent-orange-glow: rgba(255, 140, 0, 0.15);
+      --accent-cyan: #00f0ff;
+      
+      --text-white: #f3f4f6;
+      --text-gray: #9ca3af;
+      --text-muted: #6b7280;
+      
+      --gradient-orange: linear-gradient(135deg, #e65100 0%, #ff8c00 100%);
+      --gradient-cyber: linear-gradient(135deg, #0a1224 0%, #050b14 100%);
+      
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+      --shadow-glow: 0 0 25px rgba(255, 140, 0, 0.2);
+      
+      --font-headings: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      
+      --transition-fast: all 0.2s ease;
+      --transition-medium: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-white);
+      background-color: var(--bg-primary);
+      line-height: 1.6;
+      padding: 40px 20px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #111e38;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-orange);
+    }
+
+    .wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* BACK LINK */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 30px;
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: var(--transition-fast);
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .back-link:hover {
+      color: var(--accent-orange);
+      border-color: var(--border-hover);
+      transform: translateX(-4px);
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      padding: 40px 30px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient-orange);
+    }
+
+    .header h1 {
+      font-family: var(--font-headings);
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .header h2 {
+      font-family: var(--font-headings);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-orange);
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* INTRO */
+    .intro {
+      background: rgba(255, 140, 0, 0.06);
+      border: 1.5px dashed rgba(255, 140, 0, 0.25);
+      border-radius: 12px;
+      padding: 18px 24px;
+      margin-bottom: 30px;
+      font-size: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .intro strong {
+      color: var(--accent-orange);
+    }
+
+    /* STICKY COUNTER */
+    .score-counter {
+      position: sticky;
+      top: 20px;
+      z-index: 100;
+      background: rgba(5, 11, 20, 0.85);
+      border: 1.5px solid var(--accent-cyan);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      color: #fff;
+      text-align: center;
+      padding: 14px 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      font-family: var(--font-headings);
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition-medium);
+    }
+
+    .score-counter span {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--accent-cyan);
+      text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    }
+
+    /* CHECKLIST ITEMS */
+    .checklist-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .checklist-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: var(--transition-medium);
+      box-shadow: var(--shadow-card);
+    }
+
+    .checklist-item:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow), var(--shadow-card);
+    }
+
+    .checklist-item.checked {
+      background: rgba(16, 185, 129, 0.04);
+      border-color: rgba(16, 185, 129, 0.3);
+      box-shadow: 0 10px 30px -10px rgba(16, 185, 129, 0.1);
+    }
+
+    .check-box {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border: 2px solid var(--accent-orange);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: var(--transition-fast);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .check-box.empty {
+      color: transparent;
+    }
+
+    .checklist-item:hover .check-box.empty {
+      border-color: var(--accent-orange-hover);
+      background: rgba(255, 140, 0, 0.05);
+    }
+
+    .check-box.filled {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .check-content {
+      flex-grow: 1;
+    }
+
+    .check-content h3 {
+      font-family: var(--font-headings);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+      transition: var(--transition-fast);
+    }
+
+    .checklist-item.checked .check-content h3 {
+      color: #10b981;
+    }
+
+    .check-content p {
+      font-size: 13.5px;
+      color: var(--text-gray);
+      margin-bottom: 10px;
+    }
+
+    .check-content .tip {
+      display: inline-block;
+      background: rgba(255, 140, 0, 0.08);
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-size: 11px;
+      color: var(--accent-orange);
+      font-weight: 600;
+      border: 1px solid rgba(255, 140, 0, 0.15);
+    }
+
+    /* SCORE RANGES */
+    .score-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .score-section h3 {
+      font-family: var(--font-headings);
+      font-size: 20px;
+      text-align: center;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .score-section .result-feedback {
+      text-align: center;
+      font-size: 15px;
+      color: var(--text-gray);
+      margin-bottom: 30px;
+      min-height: 24px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 8px;
+    }
+
+    .score-section .ranges {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .score-section .range {
+      padding: 20px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      transition: var(--transition-medium);
+    }
+
+    .score-section .range.active {
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .score-section .range.active.red {
+      border-color: #ef4444;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+    }
+
+    .score-section .range.active.yellow {
+      border-color: #fbbf24;
+      box-shadow: 0 0 20px rgba(251, 191, 36, 0.15);
+    }
+
+    .score-section .range.active.green {
+      border-color: #10b981;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+    }
+
+    .score-section .range .num {
+      font-family: var(--font-headings);
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .score-section .range .num.red { color: #ef4444; }
+    .score-section .range .num.yellow { color: #fbbf24; }
+    .score-section .range .num.green { color: #10b981; }
+
+    .score-section .range p {
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .score-section .range .desc {
+      font-size: 11px;
+      color: var(--text-gray);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    /* CTA AREA */
+    .cta {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .cta h2 {
+      font-family: var(--font-headings);
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .cta p {
+      font-size: 14.5px;
+      color: var(--text-gray);
+      margin-bottom: 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .cta-link-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      color: #fff;
+      text-decoration: none;
+      transition: var(--transition-fast);
+    }
+
+    .cta-link-card:hover {
+      border-color: var(--border-hover);
+      background: rgba(255, 140, 0, 0.05);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .cta-link-icon {
+      width: 38px;
+      height: 38px;
+      background: rgba(255, 140, 0, 0.06);
+      border: 1px solid rgba(255, 140, 0, 0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-orange);
+      flex-shrink: 0;
+      transition: var(--transition-fast);
+    }
+
+    .cta-link-card:hover .cta-link-icon {
+      background: var(--gradient-orange);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .cta-link-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .cta-link-text {
+      text-align: left;
+    }
+
+    .cta-link-text strong {
+      display: block;
+      font-size: 10px;
+      color: var(--accent-orange);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta-link-text span {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 40px;
+      padding: 30px 0 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      body {
+        padding: 24px 12px;
+      }
+      
+      .header h1 {
+        font-size: 26px;
+      }
+
+      .score-section .ranges {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .checklist-item {
+        padding: 18px;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    
+    <!-- VOLVER -->
+    <a href="landing-auditoria.html" class="back-link">
+      <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24">
+        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+      </svg>
+      Volver a la Landing
+    </a>
+
+    <!-- CABECERA -->
+    <div class="header">
+      <h1>Checklist de Seguridad Digital</h1>
+      <h2>13 puntos críticos para evaluar tu negocio en 15 minutos</h2>
+      <p>Auditoría de Negocios Digitales</p>
+    </div>
+
+    <!-- INTRODUCCION -->
+    <div class="intro">
+      <svg style="width:20px;height:20px;fill:var(--accent-orange);flex-shrink:0;" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h-2V9h4v8z"/>
+      </svg>
+      <div>
+        <strong>Cómo usarlo:</strong> Hacé clic en cada punto que tu empresa cumple hoy. El puntaje se calculará automáticamente. Si obtenés 7 puntos o menos, tu negocio se encuentra en riesgo moderado-alto.
+      </div>
+    </div>
+
+    <!-- CONTADOR PEGADIZO -->
+    <div class="score-counter">
+      Puntaje de Seguridad: <span id="score">0</span> / 13
+    </div>
+
+    <!-- CONTENEDOR CHECKLIST -->
+    <div class="checklist-container">
+      
+      <!-- Item 1 -->
+      <div class="checklist-item" onclick="toggle(this, 1)">
+        <div class="check-box empty" id="box1">✓</div>
+        <div class="check-content">
+          <h3>1. ¿Tu sitio web carga con el candado HTTPS?</h3>
+          <p>Fíjate en la barra del navegador. Si dice "No seguro" o carga con http:// sin candado, la información que viaja entre tus clientes y tu servidor puede ser interceptada.</p>
+          <span class="tip">Sí = Carga con HTTPS y candado válido</span>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="checklist-item" onclick="toggle(this, 2)">
+        <div class="check-box empty" id="box2">✓</div>
+        <div class="check-content">
+          <h3>2. ¿Actualizás regularmente WordPress, Plugins y Temas?</h3>
+          <p>Un WordPress o plugin desactualizado es la puerta de entrada número uno para atacantes. Si tu panel muestra avisos de actualización hace semanas, estás expuesto.</p>
+          <span class="tip">Sí = Actualizaciones aplicadas al menos una vez al mes</span>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="checklist-item" onclick="toggle(this, 3)">
+        <div class="check-box empty" id="box3">✓</div>
+        <div class="check-content">
+          <h3>3. ¿Usás contraseñas fuertes y doble factor de autenticación (2FA)?</h3>
+          <p>Si tu contraseña del Hosting, WordPress, Email o Google es parecida o la misma, un solo robo de credenciales compromete todo.</p>
+          <span class="tip">Sí = Credenciales únicas + 2FA activado en servicios clave</span>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="checklist-item" onclick="toggle(this, 4)">
+        <div class="check-box empty" id="box4">✓</div>
+        <div class="check-content">
+          <h3>4. ¿Tenés backups automáticos y sabés cómo restaurarlos?</h3>
+          <p>Un backup que nunca se probó restaurar no es un backup. Si mañana tu sitio desaparece, ¿en cuánto tiempo volvés a estar online? ¿Quién se encarga?</p>
+          <span class="tip">Sí = Backups diarios + restauración probada recientemente</span>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="checklist-item" onclick="toggle(this, 5)">
+        <div class="check-box empty" id="box5">✓</div>
+        <div class="check-content">
+          <h3>5. ¿Sabés qué datos sensibles maneja tu negocio y dónde se guardan?</h3>
+          <p>Historias clínicas, datos de tarjetas, documentos legales, información de clientes. Si no sabés exactamente dónde están y quién accede, no podés protegerlos.</p>
+          <span class="tip">Sí = Inventario claro de datos sensibles y sus ubicaciones</span>
+        </div>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="checklist-item" onclick="toggle(this, 6)">
+        <div class="check-box empty" id="box6">✓</div>
+        <div class="check-content">
+          <h3>6. ¿Hay alguien responsable de la seguridad informática?</h3>
+          <p>No hace falta un equipo dedicado, pero sí alguien asignado que sepa qué mirar, cómo actuar y a quién llamar.</p>
+          <span class="tip">Sí = Persona o empresa externa designada con contacto claro</span>
+        </div>
+      </div>
+
+      <!-- Item 7 -->
+      <div class="checklist-item" onclick="toggle(this, 7)">
+        <div class="check-box empty" id="box7">✓</div>
+        <div class="check-content">
+          <h3>7. ¿Has realizado un análisis de impacto de negocio (BIA)?</h3>
+          <p>Es la primera etapa de evaluación para estructurar un plan de contingencia sólido, identificando los procesos realmente críticos del negocio.</p>
+          <span class="tip">Sí = Tenés una matriz documentada de procesos críticos</span>
+        </div>
+      </div>
+
+      <!-- Item 8 -->
+      <div class="checklist-item" onclick="toggle(this, 8)">
+        <div class="check-box empty" id="box8">✓</div>
+        <div class="check-content">
+          <h3>8. ¿Tu empresa tiene un plan de contingencia ante un incidente?</h3>
+          <p>Si hackean tu web, cae tu facturación o perdés el correo: ¿qué hacés en la primera hora? ¿A quién llamás? ¿Cómo les avisás a tus clientes?</p>
+          <span class="tip">Sí = Plan documentado con estrategias de recuperación definidas</span>
+        </div>
+      </div>
+
+      <!-- Item 9 -->
+      <div class="checklist-item" onclick="toggle(this, 9)">
+        <div class="check-box empty" id="box9">✓</div>
+        <div class="check-content">
+          <h3>9. ¿Tu servidor o hosting está protegido con firewall o WAF / IDS?</h3>
+          <p>Un servidor sin protección perimetral está totalmente expuesto. ¿Está restringido el acceso por SSH? ¿Usás Cloudflare o herramientas similares?</p>
+          <span class="tip">Sí = Firewall activo + acceso administrativo restringido</span>
+        </div>
+      </div>
+
+      <!-- Item 10 -->
+      <div class="checklist-item" onclick="toggle(this, 10)">
+        <div class="check-box empty" id="box10">✓</div>
+        <div class="check-content">
+          <h3>10. ¿Alguna vez hiciste un test de penetración o análisis de vulnerabilidades?</h3>
+          <p>Como un chequeo médico, el análisis de seguridad debe ser periódico. Si nunca lo hiciste, no sabés qué está expuesto. Los atacantes escanean 24/7.</p>
+          <span class="tip">Sí = Análisis realizado en los últimos 6 meses o ante cambios clave</span>
+        </div>
+      </div>
+
+      <!-- Item 11 -->
+      <div class="checklist-item" onclick="toggle(this, 11)">
+        <div class="check-box empty" id="box11">✓</div>
+        <div class="check-content">
+          <h3>11. ¿Tu negocio maneja datos de salud, legales o financieros?</h3>
+          <p>Si manejás este tipo de información, aplican regulaciones estrictas de protección de datos personales. Un incidente no solo cuesta dinero, sino sanciones legales.</p>
+          <span class="tip">Sí = Cumplís con regulaciones aplicables o no manejás datos sensibles</span>
+        </div>
+      </div>
+
+      <!-- Item 12 -->
+      <div class="checklist-item" onclick="toggle(this, 12)">
+        <div class="check-box empty" id="box12">✓</div>
+        <div class="check-content">
+          <h3>12. ¿Realizás campañas de concientización para tus empleados?</h3>
+          <p>La capacitación en ciberseguridad y continuidad de negocio previene el error humano, principal vector en los ataques de phishing y ransomware.</p>
+          <span class="tip">Sí = Al menos una sesión formativa al año para todo el equipo</span>
+        </div>
+      </div>
+
+      <!-- Item 13 -->
+      <div class="checklist-item" onclick="toggle(this, 13)">
+        <div class="check-box empty" id="box13">✓</div>
+        <div class="check-content">
+          <h3>13. ¿Tenés políticas y estándares de seguridad de la información documentadas?</h3>
+          <p>Las normativas internas establecen el marco regulatorio organizativo y permiten al equipo cumplir de forma homogénea con los controles técnicos.</p>
+          <span class="tip">Sí = Políticas de seguridad formales y documentadas</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECCION RESULTADOS -->
+    <div class="score-section">
+      <h3>Estado de tu Diagnóstico</h3>
+      <div class="result-feedback" id="result-msg">Seleccioná los puntos que cumple tu empresa para evaluar la exposición del negocio.</div>
+      
+      <div class="ranges">
+        <div class="range" id="range-low">
+          <div class="num red">0-4</div>
+          <p>Riesgo Alto</p>
+          <div class="desc">Tu negocio está altamente expuesto a ciberataques. Se requiere intervención urgente.</div>
+        </div>
+        <div class="range" id="range-mid">
+          <div class="num yellow">5-9</div>
+          <p>Riesgo Medio</p>
+          <div class="desc">Existen medidas básicas, pero hay puntos ciegos críticos que comprometen la operación.</div>
+        </div>
+        <div class="range" id="range-high">
+          <div class="num green">10-13</div>
+          <p>Riesgo Bajo</p>
+          <div class="desc">Estructura de seguridad sólida. La auditoría ayudará a blindar detalles finales.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+      <h2 id="cta-title">¿Tu puntaje fue menor a 10?</h2>
+      <p>Conversemos sobre cómo asegurar tu negocio sin comprometer la velocidad operativa y adaptándonos a tu presupuesto actual. Consulta sin costo.</p>
+      
+      <div class="cta-links">
+        
+        <a href="mailto:barranca2005@gmail.com" class="cta-link-card">
+          <div class="cta-link-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <div class="cta-link-text">
+            <strong>Email</strong>
+            <span>barranca2005@gmail.com</span>
+          </div>
+        </a>
+
+        <a href="https://wa.me/5491144455404" target="_blank" class="cta-link-card">
+          <div class="cta-link-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </div>
+          <div class="cta-link-text">
+            <strong>WhatsApp</strong>
+            <span>+54 9 11 4445 5404</span>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/marcelo-gimenez-mg" target="_blank" class="cta-link-card">
+          <div class="cta-link-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+            </svg>
+          </div>
+          <div class="cta-link-text">
+            <strong>LinkedIn</strong>
+            <span>/in/marcelo-gimenez-mg</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      Auditoría de Negocios Digitales &copy; 2026. Compartí este checklist interactivo con otros dueños de negocio.
+    </footer>
+
+  </div>
+
+  <script>
+    let score = 0;
+
+    function toggle(item, num) {
+      const box = document.getElementById('box' + num);
+      const isChecked = item.classList.contains('checked');
+
+      if (isChecked) {
+        item.classList.remove('checked');
+        box.classList.remove('filled');
+        box.classList.add('empty');
+        score--;
+      } else {
+        item.classList.add('checked');
+        box.classList.remove('empty');
+        box.classList.add('filled');
+        score++;
+      }
+
+      document.getElementById('score').textContent = score;
+
+      // Actualizar rangos activos
+      const rangeLow = document.getElementById('range-low');
+      const rangeMid = document.getElementById('range-mid');
+      const rangeHigh = document.getElementById('range-high');
+
+      rangeLow.classList.remove('active', 'red');
+      rangeMid.classList.remove('active', 'yellow');
+      rangeHigh.classList.remove('active', 'green');
+
+      const resultMsg = document.getElementById('result-msg');
+      const ctaTitle = document.getElementById('cta-title');
+
+      if (score <= 4) {
+        rangeLow.classList.add('active', 'red');
+        resultMsg.innerHTML = '🔴 <strong>Riesgo Alto:</strong> Tu negocio está expuesto a incidentes graves. Sugerimos agendar una auditoría inicial.';
+        ctaTitle.textContent = 'Tu puntaje es crítico. Actuemos ahora.';
+      } else if (score <= 9) {
+        rangeMid.classList.add('active', 'yellow');
+        resultMsg.innerHTML = '🟡 <strong>Riesgo Medio:</strong> Tenés protecciones básicas, pero persisten fallas operativas o de continuidad.';
+        ctaTitle.textContent = '¿Querés cerrar tus puntos ciegos?';
+      } else {
+        rangeHigh.classList.add('active', 'green');
+        resultMsg.innerHTML = '🟢 <strong>Riesgo Bajo:</strong> ¡Excelente base! Una auditoría técnica profesional dará tranquilidad total.';
+        ctaTitle.textContent = 'Llevá tu seguridad al siguiente nivel';
+      }
+    }
+  </script>
+
+</body>
+</html>
