@@ -590,6 +590,18 @@
       gap: 28px;
     }
 
+    .service-card-full {
+      grid-column: 1 / -1;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .service-card-full .icon-wrapper {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .service-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -1350,6 +1362,9 @@
       .services-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      .service-card-full {
+        grid-column: 1 / -1;
+      }
 
       .contacto-grid {
         grid-template-columns: 1fr;
@@ -1657,6 +1672,18 @@
           </div>
           <h3>Auditorías SEO Web</h3>
           <p>Revisión técnica de indexabilidad, rendimiento web en buscadores y optimización estructural para maximizar tu tráfico orgánico calificado.</p>
+        </div>
+
+        <!-- Servicio 7 (ocupa todo el ancho) -->
+        <div class="service-card service-card-full">
+          <div class="icon-wrapper">
+            <!-- Competitors SVG -->
+            <svg viewBox="0 0 24 24">
+              <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+            </svg>
+          </div>
+          <h3>Análisis de Competidores Digitales</h3>
+          <p>Identificamos y evaluamos la presencia online de tus competidores, en landing page, redes sociales, contenido, publicidad y experiencia de usuario; para descubrir oportunidades de diferenciación y definir estrategias que te posicionen por delante en tu mercado.</p>
         </div>
 
       </div>
