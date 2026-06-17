@@ -287,6 +287,121 @@
       width: 100%;
     }
 
+    /* MEJORA DROPDOWN NAV */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin-left: 32px;
+    }
+
+    .dropdown > a {
+      margin-left: 0 !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background-color: #0e1626;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      min-width: 220px;
+      padding: 10px 0;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), var(--shadow-glow);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1100;
+    }
+
+    .dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background-color: #0e1626;
+      border-left: 1px solid var(--border-color);
+      border-top: 1px solid var(--border-color);
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 20px;
+      margin-left: 0 !important;
+      font-size: 13px;
+      color: var(--text-gray);
+      transition: var(--transition-fast);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a::after {
+      display: none !important; /* Desactiva la línea animada por defecto para submenús */
+    }
+
+    .dropdown-menu a:hover {
+      background-color: rgba(255, 140, 0, 0.08);
+      color: var(--accent-orange) !important;
+      padding-left: 24px;
+    }
+
+    /* Mostrar dropdown al pasar el mouse */
+    .dropdown:hover .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(5px);
+    }
+
+    .dropdown:hover .dropdown-toggle i {
+      transform: rotate(180deg);
+      color: var(--accent-orange);
+    }
+
+    @media (max-width: 768px) {
+      .dropdown {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+      }
+      .dropdown-menu {
+        position: static;
+        transform: none !important;
+        opacity: 1;
+        visibility: visible;
+        display: none;
+        background: rgba(0, 0, 0, 0.2);
+        box-shadow: none;
+        border: none;
+        width: 100%;
+        margin-top: 10px;
+        padding: 0;
+      }
+      .dropdown-menu::before {
+        display: none;
+      }
+      .dropdown.open .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu a {
+        padding: 8px 0;
+        border-bottom: none;
+      }
+      .dropdown-menu a:hover {
+        padding-left: 0;
+        background: transparent;
+      }
+    }
+
     /* BOTÓN MOVIL */
     .mobile-menu-btn {
       display: none;
@@ -1511,6 +1626,13 @@
         </svg>
       </button>
       <div class="nav-links" id="nav-menu">
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle" onclick="return false;">Infografías <i class="fa-solid fa-chevron-down" style="font-size:9px; margin-left:4px; transition: transform 0.2s;"></i></a>
+          <div class="dropdown-menu">
+            <a href="Infografia-Continuidad-Marcelo-Giménez.html">Infografía Continuidad</a>
+            <a href="Infografia-Seguridad-Marcelo-Giménez.html">Infografía Seguridad</a>
+          </div>
+        </div>
         <a href="#servicios">Servicios</a>
         <a href="#como-funciona">Cómo Funciona</a>
         <a href="#sobre-mi">Sobre mí</a>
@@ -2148,9 +2270,27 @@
     // Cerrar menú móvil al hacer click en un enlace
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+        if (!link.classList.contains('dropdown-toggle')) {
+          navMenu.classList.remove('active');
+        }
       });
     });
+
+    // Control del dropdown de Infografías en móviles
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdown = document.querySelector('.dropdown');
+    if (dropdownToggle) {
+      dropdownToggle.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
+          const chevron = dropdownToggle.querySelector('i');
+          if (chevron) {
+            chevron.style.transform = dropdown.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        }
+      });
+    }
 
     // Envío del Formulario con EmailJS
     function handleFormSubmit(event) {
