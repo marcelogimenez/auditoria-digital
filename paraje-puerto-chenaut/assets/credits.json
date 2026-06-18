@@ -1,0 +1,24 @@
+{
+  "quesos": {
+    "src": "assets/img/quesos.jpg",
+    "title": "Mac & Cheese #food",
+    "creator": "bwise.knowem",
+    "creator_url": "https://www.flickr.com/photos/96936165@N05",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/96936165@N05/9619701860",
+    "source": "flickr"
+  },
+  "restaurante": {
+    "src": "assets/img/restaurante.jpg",
+    "title": "Popcorn of the day",
+    "creator": "Farmers Restaurant Group",
+    "creator_url": "https://www.flickr.com/photos/51564099@N02",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/51564099@N02/4742292295",
+    "source": "flickr"
+  }
+}

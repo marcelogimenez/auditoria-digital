@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paraje Puerto Chenaut — Donde el campo se sienta a la mesa</title>
+  <meta name="description" content="Descubrí los productores locales de Paraje Puerto Chenaut. Quesos artesanales, carnicería rural, parrilla, restaurante de autor y más.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🌿</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Inter:wght@300..600&display=swap">
+
+  <link rel="preload" as="image" href="assets/img/hero-paraje.jpeg" fetchpriority="high">
+
+  <link rel="stylesheet" href="styles.css?v=20260618">
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Saltar al contenido</a>
+
+  <!-- Splash -->
+  <div class="splash" data-splash>
+    <div class="splash-logo">Paraje Puerto&nbsp;Chenaut</div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="cursor" data-cursor>
+    <span class="cursor-dot"></span>
+    <span class="cursor-ring"></span>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav" data-nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">Paraje <span>Puerto&nbsp;Chenaut</span></a>
+      <ul class="nav-links">
+        <li><a href="#locales">Locales</a></li>
+        <li><a href="#mapa">Ubicación</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <a href="https://wa.me/5491112345678" class="nav-cta" target="_blank" rel="noopener">WhatsApp</a>
+      <button class="nav-toggle" data-nav-toggle aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" data-mobile-menu>
+    <a href="index.html">Inicio</a>
+    <a href="#locales">Locales</a>
+    <a href="#mapa">Ubicación</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/5491112345678" target="_blank" rel="noopener" class="btn btn-wa">WhatsApp</a>
+  </div>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg">
+        <img src="assets/img/hero-paraje.jpeg" alt="Paraje Puerto Chenaut" fetchpriority="high" decoding="sync">
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-inner">
+        <p class="eyebrow">Paraje Puerto Chenaut · Exaltación de la Cruz</p>
+        <h1 class="display-xl">Donde el campo<br>se sienta a la mesa</h1>
+        <p class="body-lg">Un paraje rural con los mejores productores locales. Quesos, carnes, parrilla y cocina de autor a un paso de Caba.</p>
+        <div class="hero-actions">
+          <a href="#locales" class="btn btn-primary">Conocé los locales</a>
+          <a href="https://maps.app.goo.gl/SMwc86DU2ZQDyjHz5" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.3);" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="section" style="background:var(--brown-pale);" data-reveal>
+      <div class="container">
+        <div class="manifesto">
+          <div class="manifesto-num">01</div>
+          <div class="manifesto-text">
+            <strong>Paraje Puerto Chenaut</strong> es un rincón del partido de Exaltación de la Cruz donde el trabajo rural se transforma en producto. Acá cada local es una historia familiar, cada queso tiene el nombre del tambo y cada corte de carne viene de un campo que podés ver desde la ruta. Es un paisaje productivo que abre sus tranqueras, que se caracteriza por su tranquilidad absoluta y su aire de "pueblo detenido en el tiempo", ideal para el turismo de cercanía y escapadas de fin de semana.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bento grid de locales -->
+    <section class="section" id="locales">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <p class="eyebrow">Productores del paraje</p>
+          <h2 class="display-md">Cinco paradas, un mismo paisaje</h2>
+        </div>
+        <div class="bento">
+          <a href="don-manuel.html" class="bento-item" data-tilt>
+            <img src="assets/img/manuel-hero.jpeg" alt="Tienda de Quesos Don Manuel" loading="lazy">
+            <div class="bento-overlay">
+              <span class="bento-tag">Quesos artesanales</span>
+              <h3 class="bento-title">Tienda de Quesos Don Manuel</h3>
+              <span class="bento-sub">Maduración en cava propia · 6 variedades</span>
+            </div>
+          </a>
+          <a href="carniceria-rural.html" class="bento-item" data-tilt>
+            <img src="assets/img/platense.jpeg" alt="Carnicería Rural" loading="lazy">
+            <div class="bento-overlay">
+              <span class="bento-tag">Cortes seleccionados</span>
+              <h3 class="bento-title">Carnicería Rural</h3>
+              <span class="bento-sub">Carnes Seleccionadas</span>
+            </div>
+          </a>
+          <a href="parrilla-paye.html" class="bento-item" data-tilt>
+            <img src="assets/img/paye-hero.png" alt="Parrilla Payé" loading="lazy">
+            <div class="bento-overlay">
+              <span class="bento-tag">Fuego y tradición</span>
+              <h3 class="bento-title">Parrilla Payé</h3>
+              <span class="bento-sub">Fines de semana · Música en vivo</span>
+            </div>
+          </a>
+          <a href="finca-chenaut.html" class="bento-item" data-tilt>
+            <img src="assets/img/finca-hero.jpg" alt="Restaurante Finca Chenaut" loading="lazy">
+            <div class="bento-overlay">
+              <span class="bento-tag">Cocina de autor</span>
+              <h3 class="bento-title">Restaurante Finca Chenaut</h3>
+              <span class="bento-sub">Huerta orgánica · Menú de 5 pasos</span>
+            </div>
+          </a>
+          <a href="sociedad-rural.html" class="bento-item" data-tilt>
+            <img src="assets/img/sede-hero-nueva.jpg" alt="Sede Sociedad Rural" loading="lazy">
+            <div class="bento-overlay">
+              <span class="bento-tag">Eventos y convenciones</span>
+              <h3 class="bento-title">Sociedad Rural de Bs. As.</h3>
+              <span class="bento-sub">Salón para 300 personas · Feria de productores</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+      <div class="marquee">
+        <span>Quesos artesanales</span><span>·</span>
+        <span>Carnes de selección</span><span>·</span>
+        <span>Parrilla libre</span><span>·</span>
+        <span>Cocina de autor</span><span>·</span>
+        <span>Eventos rurales</span><span>·</span>
+        <span>Productores locales</span><span>·</span>
+        <span>Quesos artesanales</span><span>·</span>
+        <span>Carnes de selección</span><span>·</span>
+        <span>Parrilla libre</span><span>·</span>
+        <span>Cocina de autor</span><span>·</span>
+        <span>Eventos rurales</span><span>·</span>
+        <span>Productores locales</span>
+      </div>
+    </div>
+
+    <!-- Mapa + Newsletter -->
+    <section class="section" id="mapa">
+      <div class="container">
+        <div class="mapa-row">
+          <div class="mapa-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3301!2d-59.2080953!3d-34.2325726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bb99000424dbbd%3A0xa619d1a19f648842!2sParaje+Puerto+Chenaut!5e0!3m2!1ses!2sar!4v1" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa de Paraje Puerto Chenaut"></iframe>
+          </div>
+          <div class="newsletter-box">
+            <p class="eyebrow">Mantente al tanto</p>
+            <h2 class="display-md">Novedades del paraje</h2>
+            <p class="body-lg">Recibí las ferias, eventos y nuevos productos directo en tu mail. Sin spam, solo campo.</p>
+            <form class="newsletter-form" data-newsletter-form>
+              <input type="email" placeholder="Tu correo electrónico" required aria-label="Email para novedades">
+              <button type="submit" class="btn btn-primary">Suscribirme</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section" id="contacto" style="text-align:center;background:var(--bg-2);" data-reveal>
+      <div class="container">
+        <p class="eyebrow">Contacto directo</p>
+        <h2 class="display-md" style="margin-bottom:1rem;">¿Querés visitar el paraje?</h2>
+        <p class="body-lg" style="margin-inline:auto;">Escribinos por WhatsApp y te armamos el recorrido.</p>
+        <a href="https://wa.me/5491112345678" class="btn btn-wa" style="margin-top:1.5rem;" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 0C4.5 0 0 4.5 0 10c0 1.8.5 3.5 1.3 5L0 20l5.2-1.4c1.4.8 3 1.4 4.8 1.4 5.5 0 10-4.5 10-10S15.5 0 10 0zm5 14.2c-.2.6-1.1 1.2-1.6 1.3-.4.1-.9.2-2-.4-1.8-1-3.8-3-3.9-3.1-.1-.1-.9-1.2-.9-2.3s.6-1.7.8-1.9c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.7 1.8.8 1.9.1.1.1.3 0 .5s-.3.6-.5.8c-.2.2-.3.3-.1.5.5.8 1.8 2 3.2 2.6.4.2.7.2 1-.1.3-.3.7-1 .9-1.3.2-.3.3-.2.6-.1.3.1 1.6.8 1.9.9.3.1.5.2.6.3.1.1.1.5-.1 1.1z"/></svg>
+          Hablar por WhatsApp
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- WhatsApp float -->
+  <a href="https://wa.me/5491112345678" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12c0 2.1.5 4.1 1.5 5.9L0 24l6.3-1.6c1.7.9 3.6 1.6 5.7 1.6 6.6 0 12-5.4 12-12S18.6 0 12 0zm6 17c-.3.7-1.3 1.4-1.9 1.5-.5.1-1.1.2-2.4-.5-2.1-1.2-4.5-3.6-4.7-3.8-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.3c.2-.3.6-.4.8-.4h.6c.2 0 .4 0 .7.6.3.6.9 2.1.9 2.3.1.2.1.4 0 .6-.1.2-.3.7-.6 1-.2.2-.4.4-.2.6.6 1 2.1 2.4 3.8 3.1.5.3.8.2 1.1-.1.3-.3.9-1.2 1.1-1.6.2-.4.4-.3.7-.2.3.2 1.9.9 2.3 1.1.4.2.6.3.7.4.1.2.1.7-.1 1.3z"/></svg>
+  </a>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo">Paraje <span>Puerto&nbsp;Chenaut</span></span>
+          <p>Un paraje rural del partido de Exaltación de la Cruz, Provincia de Buenos Aires.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Locales</h4>
+          <a href="don-manuel.html">Don Manuel</a>
+          <a href="carniceria-rural.html">Carnicería Rural</a>
+          <a href="parrilla-paye.html">Parrilla Payé</a>
+          <a href="finca-chenaut.html">Finca Chenaut</a>
+          <a href="sociedad-rural.html">Sociedad Rural</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <a href="https://wa.me/5491112345678" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://maps.app.goo.gl/SMwc86DU2ZQDyjHz5" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+        <div class="footer-col">
+          <h4>Auspiciantes</h4>
+          <a href="assets/credits.json" target="_blank">Auspiciantes</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Paraje Puerto Chenaut</span><span>Marcelo Gimenez - Negocios Digitales</span>
+        <a href="https://wa.me/5491112345678" target="_blank" rel="noopener">Contactar</a>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="lib/gsap.min.js?20260618"></script>
+  <script defer src="lib/ScrollTrigger.min.js?20260618"></script>
+  <script defer src="lib/manifest.js?v=20260618"></script>
+  <script defer src="main.js?v=20260618"></script>
+
+</body>
+</html>
