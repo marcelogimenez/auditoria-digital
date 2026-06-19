@@ -674,8 +674,9 @@ h1, h2, h3, h4 { text-wrap: balance; line-height: 1.08; letter-spacing: -0.02em;
 .splash.is-out { animation: splashFade .6s var(--ease-out) forwards; }
 @keyframes splashFade { to { opacity: 0; pointer-events: none; } }
 .splash-logo {
-  font-family: var(--serif); font-size: clamp(1.6rem, 5vw, 2.8rem);
-  font-style: italic; font-weight: 320; color: var(--accent-2);
-  animation: splashPulse 1.2s var(--ease-out) infinite alternate;
+  font-family: var(--serif); font-size: clamp(2rem, 6vw, 3.6rem);
+  font-style: italic; font-weight: 420; color: var(--accent-2);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  animation: splashPulse 1.4s var(--ease-out) infinite alternate;
 }
-@keyframes splashPulse { from { opacity: 0.4; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+@keyframes splashPulse { from { opacity: 0.5; transform: scale(0.97); } to { opacity: 1; transform: scale(1.02); } }
