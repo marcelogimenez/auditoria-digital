@@ -1,0 +1,4 @@
+[
+  {"id": "quesos",        "query": "cheese food",                      "aspect": "square"},
+  {"id": "restaurante",   "query": "restaurant table food",            "aspect": "wide"}
+]

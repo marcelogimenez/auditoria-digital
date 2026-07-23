@@ -1,0 +1,7 @@
+[
+  {"id": "quesos",        "query": "cheese board display",              "aspect": "square"},
+  {"id": "restaurante",   "query": "outdoor restaurant garden dining",   "aspect": "wide"},
+  {"id": "producto-1",    "query": "dairy cheese farm",                 "aspect": "square"},
+  {"id": "producto-3",    "query": "butcher meat cuts",                  "aspect": "square"},
+  {"id": "sede",          "query": "event space hall venue",             "aspect": "wide"}
+]
